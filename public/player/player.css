@@ -1,0 +1,197 @@
+/* Giao diện player: thanh điều khiển tối giản, thanh tiến độ xanh lá mảnh, nút phát tròn viền. */
+.art-video-player {
+    --art-theme: #35d07f;
+    --art-font-color: #fff;
+    --art-bottom-gap: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ---------- Vùng điều khiển phía dưới ---------- */
+.art-video-player .art-bottom {
+    padding: 0 10px 2px;
+    background: linear-gradient(to top, rgba(0, 0, 0, .85) 0%, rgba(0, 0, 0, .45) 55%, transparent 100%);
+}
+
+.art-video-player .art-controls {
+    height: 56px;
+    align-items: center;
+}
+
+.art-video-player .art-controls .art-control {
+    opacity: 1;
+    color: #fff;
+}
+
+.art-video-player .art-controls-left,
+.art-video-player .art-controls-right {
+    align-items: center;
+}
+
+.art-video-player .art-icon {
+    color: #fff;
+}
+
+/* Biểu tượng nét viền: CSS gốc của ArtPlayer ép fill trắng nên phải ghi đè rõ ràng. */
+.art-video-player .art-controls .art-icon svg {
+    fill: none;
+    stroke: currentColor;
+}
+
+.art-video-player .art-icon svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+    transition: transform .15s ease, color .15s ease;
+}
+
+.art-video-player .art-control:hover .art-icon svg {
+    color: var(--art-theme);
+}
+
+/* Nút phát/tạm dừng tròn, to hơn các nút khác */
+.art-video-player .art-control-playAndPause {
+    width: 48px;
+    height: 48px;
+    margin-right: 6px;
+}
+
+.art-video-player .art-control-playAndPause .art-icon,
+.art-video-player .art-control-playAndPause .art-icon svg {
+    width: 44px;
+    height: 44px;
+}
+
+/* Tua 10 giây */
+.art-video-player .art-control-rewind10,
+.art-video-player .art-control-forward10 {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.art-video-player .art-control-rewind10 svg,
+.art-video-player .art-control-forward10 svg {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: currentColor;
+}
+
+.art-video-player .art-control-rewind10:active svg { transform: rotate(-25deg); }
+.art-video-player .art-control-forward10:active svg { transform: rotate(25deg); }
+
+/* Thời gian */
+.art-video-player .art-control-time {
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .2px;
+    font-variant-numeric: tabular-nums;
+    color: #fff;
+}
+
+/* Nhãn "Auto" trên nút cài đặt (dùng phần tử thật vì ::after của nút đã được tooltip chiếm) */
+.art-video-player .art-icon-setting {
+    position: relative;
+}
+
+.art-video-player .art-icon-setting .art-badge {
+    position: absolute;
+    top: -2px;
+    right: -8px;
+    padding: 0 4px;
+    border-radius: 6px 6px 6px 0;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 14px;
+    color: #fff;
+    background: var(--art-theme);
+    pointer-events: none;
+}
+
+/* ---------- Thanh tiến độ ---------- */
+.art-video-player .art-bottom .art-progress {
+    height: 14px;
+    align-items: center;
+}
+
+.art-video-player .art-bottom .art-control-progress {
+    height: 14px;
+    align-items: center;
+}
+
+.art-video-player .art-control-progress-inner {
+    height: 3px;
+    background: rgba(255, 255, 255, .28);
+    border-radius: 2px;
+    transition: height .12s ease;
+}
+
+.art-video-player .art-control-progress:hover .art-control-progress-inner {
+    height: 5px;
+}
+
+.art-video-player .art-progress-loaded {
+    background: rgba(255, 255, 255, .5);
+    border-radius: 2px;
+}
+
+.art-video-player .art-progress-played {
+    background: var(--art-theme);
+    border-radius: 2px;
+}
+
+.art-video-player .art-progress-indicator {
+    width: 13px;
+    height: 13px;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(53, 208, 127, .35);
+}
+
+.art-video-player .art-progress-tip {
+    background: rgba(0, 0, 0, .8);
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+/* ---------- Biểu tượng giữa màn hình khi tạm dừng ---------- */
+.art-video-player .art-state .art-icon-state,
+.art-video-player .art-state .art-icon-state svg {
+    width: 96px;
+    height: 96px;
+}
+
+.art-video-player .art-state .art-icon-state {
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, .45));
+    transition: transform .15s ease;
+}
+
+.art-video-player .art-state:hover .art-icon-state {
+    transform: scale(1.06);
+}
+
+/* ---------- Bảng cài đặt / âm lượng ---------- */
+.art-video-player .art-settings {
+    background: rgba(24, 24, 24, .94);
+    border-radius: 10px;
+}
+
+.art-video-player .art-volume-panel .art-volume-slider {
+    background: rgba(255, 255, 255, .3);
+}
+
+/* ---------- Màn hình nhỏ ---------- */
+@media (max-width: 560px) {
+    .art-video-player .art-controls { height: 46px; }
+    .art-video-player .art-control-playAndPause,
+    .art-video-player .art-control-playAndPause .art-icon,
+    .art-video-player .art-control-playAndPause .art-icon svg { width: 36px; height: 36px; }
+    .art-video-player .art-control-rewind10,
+    .art-video-player .art-control-forward10,
+    .art-video-player .art-control-volume,
+    .art-video-player .art-control-fullscreenWeb { display: none; }
+    .art-video-player .art-control-time { font-size: 13px; margin-left: 6px; }
+}
